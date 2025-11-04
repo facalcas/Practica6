@@ -160,7 +160,13 @@ Datos%>%
 Compara la distribución de probabilidad de las notas de la asignatura ANM con la de una Gaussiana empleando la función `qqPlot` (quantile-quantile plot) de la librería `car`, que representa gráficamente los cuantiles de la distribución analizada respecto de los de una distribución normal (Gaussiana).
 
 ```{r Solucion_Ej5, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
+library(car)
 
+valores<-Datos%>%
+  pivot_longer(names_to = "asignatura",values_to = "nota",cols = ends_with(".num"))%>%
+  filter(asignatura=="ANM.num")
+
+qqPlot(valores$nota)
 ```
 
 # Análisis univariante de variables categóricas
