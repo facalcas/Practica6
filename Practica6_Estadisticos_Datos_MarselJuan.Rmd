@@ -185,7 +185,7 @@ AL
 ALGyANM<-table(Datos$ALG.cat,Datos$ANM.cat)
 ALGyANM
 
-mosaicplot(x = ALGyANM,)
+mosaicplot(x = ALGyANM,xlab = "Nota ALG",ylab = "Nota ANM")
 ```
 
 # Análisis bivariante de variables numéricas
@@ -196,6 +196,14 @@ mosaicplot(x = ALGyANM,)
   * Compara los resultados para el coeficiente de correlación de Pearson (para variables numéricas) y de Spearman (para variables numéricas ordinales).
 
 ```{r Solucion_Ej7, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
+
+Datos%>%
+  select(ends_with(".num"))%>%
+  cor(use="complete.obs",method = "pearson")
+
+Datos%>%
+  select(ends_with(".num"))%>%
+  cor(use="complete.obs",method = "spearman")
 
 ```
 
