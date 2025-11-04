@@ -130,7 +130,13 @@ etc    |
 
 
 ```{r Solucion_Ej3, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
-
+Datos%>%
+  pivot_longer(names_to = "asignatura",values_to = "nota",cols = ends_with(".num"))%>%
+  group_by(asignatura)%>%
+  summarise(mean=mean(nota,na.rm=T),
+            sd=sd(nota,na.rm=T),
+            median=median(nota,na.rm=T),
+            iqr=IQR(nota,na.rm=T))
 ```
 
 ## Ejercicio 4: Distribución de datos
