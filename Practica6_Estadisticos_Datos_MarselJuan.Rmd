@@ -215,6 +215,16 @@ Para comprobarlo, vamos a aplicar una función no lineal a una de las variables 
 
 ```{r Solucion_Ej7 bis, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
 
+Datos%>%
+  mutate(ALG.num = sqrt(ALG.num))%>%
+  select(ALG.num,MD.num)%>%
+  cor(use="complete.obs",method = "pearson")
+
+Datos%>%
+  mutate(ALG.num = sqrt(ALG.num))%>%
+  select(ALG.num,MD.num)%>%
+  cor(use="complete.obs",method = "spearman")
+
 ```
 
 ## Ejercicio 8: Representación gráfica de correlación entre variables
@@ -223,6 +233,10 @@ Dibuja las matrices de correlación del conjunto de notas numéricas.
 Podemos usar `pairs` del paquete base o bien `ggcorr` y `ggpairs` de la librería `GGally`.
 
 ```{r Solucion_Ej8, include=TRUE, echo=TRUE, eval=TRUE, results=TRUE}
+
+Datos%>%
+  select(ends_with(".num"))%>%
+  ggpairs()
 
 ```
 
